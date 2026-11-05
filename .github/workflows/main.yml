@@ -1,0 +1,31 @@
+name: Build MRE VXP
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install ARM GCC Toolchain
+        uses: carlosperate/arm-none-eabi-gcc-action@v1
+
+      - name: Compile Project
+        working-directory: src
+        run: |
+          make --debug=v
+
+      - name: Upload VXP Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtmine64-vxp
+          path: |
+            src/build/
+            src/*.vxp
