@@ -11,22 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Install ARM GCC Toolchain
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y gcc-arm-none-eabi make
+      - name: Install ARM GCC Toolchain
+        uses: ammaraskar/gcc-action@master
+        with:
+          target: arm-none-eabi
 
-    - name: Compile Project
-      run: |
-        make
+      - name: Compile Project
+        working-directory: src
+        run: |
+          make
 
-    - name: Upload VXP Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: mtmine64-vxp
-        path: |
-          build/
-          *.vxp
+      - name: Upload VXP Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtmine64-vxp
+          path: |
+            src/build/
+            src/*.vxp
