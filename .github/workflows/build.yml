@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install ARM GCC Toolchain
-        uses: ammaraskar/gcc-action@master
+        uses: carlosperate/arm-none-eabi-gcc-action@v1 
         with:
           target: arm-none-eabi
 
