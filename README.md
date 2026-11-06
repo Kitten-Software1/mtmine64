@@ -20,3 +20,6 @@ Top-down 2D block building and exploration game for [MediaTek MRE](https://lpcwi
 
 ## License
 Files in the `sdk/` folder (except for `build.py`) are taken from the MRE SDK. All other files are available under the MIT License.
+
+## Release
+A release will be published in the future.
